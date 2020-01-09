@@ -1,5 +1,28 @@
 'use strict';
 
+let bill = document.getElementById('start'),
+    budget = document.getElementsByClassName('budget-value')[0],
+    daybudget = document.getElementsByClassName('daybudget-value')[0],
+    level = document.getElementsByClassName('level-value')[0],
+    expenses = document.getElementsByClassName('expenses-value')[0],
+    optionalExpenses = document.getElementsByClassName('optionalexpenses-value')[0],
+    income = document.getElementsByClassName('income-value')[0],
+    monthSavings = document.getElementsByClassName('monthsavings-value')[0],
+    yearSavings = document.getElementsByClassName('yearsavings-value')[0],
+
+    expensesItem = document.getElementsByClassName('expenses-item'),
+    btnExpenses = document.getElementsByTagName('button')[0],
+    btnOptional = document.getElementsByTagName('button')[1],
+    btnCount = document.getElementsByTagName('button')[2],
+    optionalExpenses1 = document.querySelectorAll('.optionalexpenses-item'),
+    maybe = document.querySelector('.choose-income'),
+    checkbox = document.querySelector('#savings'),
+    sum = document.querySelector('#sum'),
+    percent = document.querySelector('#percent'),
+    year = document.querySelector('.year-value'),
+    month = document.querySelector('.month-value'),
+    day = document.querySelector('.day-value');
+
 let money, time;
 
 function start() {

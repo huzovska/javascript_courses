@@ -107,4 +107,27 @@ window.addEventListener('DOMContentLoaded', function(){
     //         hours.textContent = '0'+t.hours
     //     }
     // }
+
+    //Modal
+    let more = document.querySelector('.more'),
+        overlay = document.querySelector('.overlay'),
+        close = document.querySelector('.popup-close');
+    more.addEventListener('click', function(){
+        overlay.style.display = 'block';
+        this.classList.add('more-splash');
+        document.body.style.overflow = 'hidden';
+    });
+    close.addEventListener('click', function(){
+        overlay.style.display = 'none';
+        more.classList.add('more-splash');
+        document.body.style.overflow = '';
+    });
+
+    let description = document.querySelectorAll('.description-btn');
+    description.forEach(desc => desc.addEventListener('click', function(){
+        overlay.style.display = 'block';
+        this.classList.add('more-splash');
+        document.body.style.overflow = 'hidden';
+    }));
+    
 });

@@ -1,43 +1,81 @@
-// let timerID = setTimeout(sayHello, 3000);
-// clearTimeout(timerID);
+// function User(name, id) {
+//     this.name = name;
+//     this.id = id;
+//     this.human = true;
+//     this.hello = function() {
+//         console.log('Hello!' + this.name);
+//     }
 
-// let timerID = setInterval(sayHello, 3000);
-// // clearTimeout(timerID);
-
-// function sayHello() {
-//     console.log ('Hello Word!');
 // }
 
-// let timerId = setTimeout(function log(){
-//     console.log('Hello');
-//     setTimeout(log, 2000);
-// });
+// User.prototype.exit = function(name) {
+//     console.log ('Пользователь ' + this.name + ' ушел');
+// }
 
-let btn = document.querySelector('.btn'),
-    elem = document.querySelector('.box');
+// let ivan = new User('Ivan', 12),
+//     alex = new User('Alex',23);
 
-function myAnimation() {
-    let pos = 0;
+// console.log(ivan);
+// console.log(alex);
 
-    let id = setInterval(frame, 10);
-    function frame() {
-        if (pos == 300) {
-            clearInterval(id);
-        } else{
-            pos++;
-            elem.style.top = pos + 'px';
-            elem.style.left = pos + 'px';
-        }
-    }    
-}
+// ivan.exit();
 
-btn.addEventListener('click', myAnimation);
 
-let btnBlock = document.querySelector('.btn-block'),
-    btns = document.getElementsByTagName('button');
+// function showThis(a, b) {
+//     console.log(this);
+//     function sum() {
+//         console.log(this);
+//         return a + b;
+//     }
+//     console.log(sum());
 
-btnBlock.addEventListener('click', function(event) {
-    if (event.target && event.target.matches('button.first')) {
-        console.log('Hello!');
+// }
+// showThis(4,5);
+// showThis(5,5);
+
+// let obj = {
+//     a:10,
+//     b:15,
+//     sum: function(){
+//         console.log(this);
+//         function shout() {
+//             console.log(this);
+//         }
+//         shout();
+//     }
+// };
+// obj.sum();
+
+// let user = {
+//     name:"John" 
+// };
+// function sayName(surname){
+//     console.log(this);
+//     console.log(this.name + surname);
+// }
+
+// console.log(sayName.call(user, 'Smith'));
+// console.log(sayName.apply(user, ['Snow']));
+
+// function count(number) {
+//     return this*number;
+// }
+
+// let double = count.bind(2);
+// console.log(double(3));
+// console.log(double(10));
+
+let btn = document.querySelector('button');
+
+btn.addEventListener('click', function(){
+    console.log(this);
+    this.style.backgroundColor = 'red';
+    function showThis() {
+        console.log(this);
     }
-});
+    showThis();
+})
+// 1. Просто вызов функции - wimdow/undefined
+// 2. Метод объекта - this = объект
+// 3. Конструктор ()new - this = новый созданный объект
+// 4. Указание конкретного контекста - call, apply, bind

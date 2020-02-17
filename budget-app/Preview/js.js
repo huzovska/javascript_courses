@@ -1,88 +1,41 @@
-let name = "Ivan",
-    age = 30,
-    mail = 'example@mail.ru';
+// let options = {
+//     width: 1366,
+//     heigh: 768,
+//     background: 'red',
+//     front:{
+//         size:'16px',
+//         color:'#fff'
+//     }
+// };
 
-document.write(`Пользователю ${name} ${age} лет. Его почтовый адрес: ${mail}`);
+// console.log(JSON.parse(JSON.stringify(options)));
 
-function makeArray(){
-    var items = [];
+let inputRub = document.getElementById('rub'),
+    inputUsd = document.getElementById('usd');
 
-    for(let i = 0; i < 10; i++) {
-        var item = function() {
-            console.log(i);
-        };
-        items.push(item);
-    }
+inputRub.addEventListener('input', () => {
+    let request = new XMLHttpRequest();
 
-    return items;
-}
+    // request.open(method, url, async, login, pass);
 
-var arr = makeArray();
+    request.open('GET', 'current.json');
+    request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+    request.send();
 
-arr[1]();
-arr[3]();
-arr[7]();
+    // status 
+    // statusText
+    // responseText / responce
+    // readyState
 
-let fun = () => {
-    console.log(this);
-};
 
-// fun();
+    request.addEventListener('readystatechange', function(){
+        if (request.readyState === 4 && request.status == 200){
+            let data = JSON.parse(request.response);
 
-let obj = {
-    number: 5,
-    sayNumber: function() {
-        let say = () => {
-            console.log(this);
-        };
-        say();
-    }
-};
-
-obj.sayNumber();
-
-let btn = document.querySelector('button');
-
-btn.addEventListener('click', function() {
-    let show = () => {
-        console.log(this);
-    };
-    show();
+            inputUsd.value = inputRub.value / data.usd;
+            
+        } else {
+            inputUsd.value = "Что-то пошло не так!";
+        }
+    });
 });
-
-function calcOrDouble(number, basis = 2) {
-    // basis = basis || 2; УЫ5
-    console.log(number*basis);
-}
-calcOrDouble(3,5);
-calcOrDouble(6);
-
-class Rectangle {
-    constructor(height, width = 20){
-        this.height = height;
-        this.width = width;
-    }
-    calcArea () {
-        return this.height*this.width;
-    }
-}
-
-const squere = new Rectangle(10);
-
-console.log(squere.calcArea());
-
-let video = ['youtube', 'vimeo', 'rutube'],
-    blogs = ['wordpress', 'lovejournal', 'blogger'],
-    internet = [...video, ...blogs, 'vk', 'facebook'];
-
-console.log(internet);
-
-function log(a, b, c) {
-    console.log(a);
-    console.log(b);
-    console.log(c);
-    console.log(a+b+c);
-}
-let numbers = [ 2, 5, 7];
-
-log(...numbers);
